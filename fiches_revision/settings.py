@@ -95,6 +95,7 @@ INSTALLED_APPS = [
     'analytics',
     'ai_engine',
     'gamification',
+    'pwa',
 ]
 
 MIDDLEWARE = [
@@ -220,6 +221,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
+    BASE_DIR / 'static/images/favicon_io',  # Inclure le dossier favicon_io
 ]
 
 # Configuration WhiteNoise pour servir les fichiers statiques en production
@@ -328,6 +330,78 @@ AI_MAX_TOKENS = config('AI_MAX_TOKENS', default=800, cast=int)
 FILE_UPLOAD_MAX_MEMORY_SIZE = 10 * 1024 * 1024  # 10MB
 DATA_UPLOAD_MAX_MEMORY_SIZE = 10 * 1024 * 1024  # 10MB
 
+# settings.py
+PWA_APP_NAME = 'Mon App Django'
+PWA_APP_DESCRIPTION = "Ma super application"
+PWA_APP_THEME_COLOR = '#3498db'
+PWA_APP_BACKGROUND_COLOR = '#ffffff'
+PWA_APP_DISPLAY = 'standalone'
+PWA_APP_SCOPE = '/'
+PWA_APP_ORIENTATION = 'any'
+PWA_APP_START_URL = '/'
+PWA_APP_STATUS_BAR_COLOR = 'default'
+
+# ⭐ CONFIGURATION DES ICÔNES ⭐
+PWA_APP_ICONS = [
+    {
+        'src': '/static/icons/AppImages/android/android-launchericon-72-72.png',
+        'sizes': '72x72',
+        'type': 'image/png'
+    },
+    {
+        'src': '/static/icons/AppImages/android/android-launchericon-96-96.png',
+        'sizes': '96x96',
+        'type': 'image/png'
+    },
+    {
+        'src': '/static/icons/AppImages/ios/128.png',
+        'sizes': '128x128',
+        'type': 'image/png'
+    },
+    {
+        'src': '/static/icons/AppImages/android/android-launchericon-144-144.png',
+        'sizes': '144x144',
+        'type': 'image/png'
+    },
+    {
+        'src': '/static/icons/AppImages/ios/152.png',
+        'sizes': '152x152',
+        'type': 'image/png'
+    },
+    {
+        'src': '/static/icons/AppImages/android/android-launchericon-192-192.png',
+        'sizes': '192x192',
+        'type': 'image/png'
+    },
+    {
+        'src': '/static/icons/AppImages/ios/384.png',
+        'sizes': '384x384',
+        'type': 'image/png'
+    },
+    {
+        'src': '/static/icons/AppImages/android/android-launchericon-512-512.png',
+        'sizes': '512x512',
+        'type': 'image/png'
+    }
+]
+
+# Configuration iOS spécifique
+PWA_APP_ICONS_APPLE = [
+    {
+        'src': '/static/icons/AppImages/ios/152.png',
+        'sizes': '152x152',
+        'type': 'image/png'
+    }
+]
+
+# Splash screens (écrans de démarrage)
+PWA_APP_SPLASH_SCREEN = [
+    {
+        'src': '/static/icons/AppImages/android/android-launchericon-512-512.png',
+        'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
+    }
+]
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')
 # =============================================================================
 # PARAMÈTRES AUTH/SESSION
 # =============================================================================
@@ -402,6 +476,66 @@ LYGOS_API_KEY = config('LYGOS_API_KEY', default='')
 # Opérateurs pris en charge (ex: MTN, AIRTEL CONGO)
 LYGOS_SUPPORTED_OPERATORS = config('LYGOS_SUPPORTED_OPERATORS', default='MTN,AIRTEL_CONGO')
 LYGOS_WEBHOOK_SECRET = config('LYGOS_WEBHOOK_SECRET', default='')
+
+# =============================================================================
+# CONFIGURATION PWA (Progressive Web App)
+# =============================================================================
+
+# Configuration de base PWA
+PWA_APP_NAME = 'SmartEtude'
+PWA_APP_DESCRIPTION = "Plateforme de Révision Intelligente"
+PWA_APP_THEME_COLOR = '#3498db'
+PWA_APP_BACKGROUND_COLOR = '#ffffff'
+PWA_APP_DISPLAY = 'standalone'
+PWA_APP_SCOPE = '/'
+PWA_APP_ORIENTATION = 'portrait'
+PWA_APP_START_URL = '/'
+PWA_APP_STATUS_BAR_COLOR = 'default'
+PWA_APP_DEBUG_MODE = DEBUG
+
+# Icônes PWA
+PWA_APP_ICONS = [
+    {
+        'src': '/static/icons/AppImages/android/android-launchericon-192-192.png',
+        'sizes': '192x192',
+        'type': 'image/png',
+        'purpose': 'any maskable'
+    },
+    {
+        'src': '/static/icons/AppImages/android/android-launchericon-512-512.png',
+        'sizes': '512x512',
+        'type': 'image/png'
+    }
+]
+
+# Icônes pour iOS
+PWA_APP_ICONS_APPLE = [
+    {
+        'src': '/static/icons/AppImages/ios/152.png',
+        'sizes': '152x152',
+        'type': 'image/png'
+    },
+    {
+        'src': '/static/icons/AppImages/ios/180.png',
+        'sizes': '180x180',
+        'type': 'image/png'
+    }
+]
+
+# Écran de démarrage
+PWA_APP_SPLASH_SCREEN = [
+    {
+        'src': '/static/icons/AppImages/ios/512.png',
+        'media': '(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)'
+    }
+]
+
+# Service Worker
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static', 'js', 'serviceworker.js')
+
+# =============================================================================
+# CONFIGURATION POUR LES EMAILS
+# =============================================================================
 
 # =============================================================================
 # CONFIGURATION DU LOGGING
